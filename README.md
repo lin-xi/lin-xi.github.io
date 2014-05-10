@@ -1,6 +1,12 @@
-hzmook
-=======
+#一点点说明
 
-This is the Jekyll source for hzmook's blog and website, [hzmook](http://hzmook.github.com/). The design and layout of this site are from [Mister Bleigh](http://www.mbleigh.com/), and are licensed under the MIT License. However, the content of the site (blog posts and page content) is licensed under a Creative Commons Attribution license (you may use it, but must give attribution).
+这是[BeiYuu.com](http://beiyuu.com)的源码，如果你看了[使用Github Pages建独立博客](http://beiyuu.com/github-pages/)，希望看下去哦：
 
-Copyright (c) 2012 hzmook. Rights reserved as indicated above.
+* 马上动手，很赞
+* 感谢认可
+* 推荐阅读：[我为什么写博客？](http://beiyuu.com/why-blog/)
+* 想复用我的设计，没问题，标个出处就好啦
+* 转载也没问题，标个出处呗少年
+* 恩，认真的童鞋最可爱啦~
+
+###请删掉统计代码哦 /_layouts/default.html L38-41
