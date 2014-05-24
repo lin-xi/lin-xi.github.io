@@ -167,5 +167,4 @@ http://map.yanue.net/gps.html
 			$this->fp = null;
 		}
 	}
-参考文章：http://go2log.com/2011/08/30/%E4%B8%AD%E5%9B%BD%E5%9C%B0%E5%9B%BE%E5%81%8F%E7%A7%BB%E6%A0%A1%E6%AD%A3php%E7%AE%97%E6%B3%95/（有c#算法）至此，文章完。 
-转载请注明：半叶寒羽 » gps纠偏数据库及gps纠偏算法PHP
+参考文章：http://go2log.com/2011/08/30/%E4%B8%AD%E5%9B%BD%E5%9C%B0%E5%9B%BE%E5%81%8F%E7%A7%BB%E6%A0%A1%E6%AD%A3php%E7%AE%97%E6%B3%95/
