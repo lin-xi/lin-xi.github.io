@@ -2,12 +2,14 @@
 layout: home
 ---
 
+
 <div class="index-content blog">
     <div class="section">
         <ul class="artical-cate">
             <li class="on"><a href="/"><span>Blog</span></a></li>
-            <li style="text-align:center"><a href="/webgl"><span>webgl</span></a></li>
-            <li style="text-align:right"><a href="/project"><span>Project</span></a></li>
+            <li><a href="/Idea"><span>Idea</span></a></li>
+            <li><a href="/Project"><span>Project</span></a></li>
+			<li><a href="/About"><span>About</span></a></li>
         </ul>
 
         <div class="cate-bar"><span id="cateBar"></span></div>
@@ -22,5 +24,14 @@ layout: home
         </ul>
     </div>
     <div class="aside">
+		
+		<div class="annual-plan">
+			行动改变一切。<br>
+			<br>
+			2014年我想做的：<br>
+			1).分布式日志系统<br>
+			2).三维重建<br>
+		</div>
+	
     </div>
 </div>
