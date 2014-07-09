@@ -7,8 +7,8 @@ layout: home
     <div class="section">
         <ul class="artical-cate">
             <li class="on"><a href="/"><span>Blog</span></a></li>
-            <li><a href="/Idea"><span>Idea</span></a></li>
-            <li><a href="/Project"><span>Project</span></a></li>
+            <li><a href="/idea"><span>Idea</span></a></li>
+            <li><a href="/project"><span>Project</span></a></li>
         </ul>
 
         <div class="cate-bar"><span id="cateBar"></span></div>
