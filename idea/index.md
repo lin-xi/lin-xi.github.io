@@ -6,15 +6,14 @@ layout: webgl
     <div class="section">
         <ul class="artical-cate">
             <li><a href="/"><span>Blog</span></a></li>
-            <li style="text-align:center"><a href="/opinion"><span>Opinion</span></a></li>
-			<li style="text-align:center"><a href="/webgl"><span>webgl</span></a></li>
-            <li class="on" style="text-align:right"><a href="/project"><span>Project</span></a></li>
+            <li class="on"><a href="/idea"><span>Idea</span></a></li>
+			<li><a href="/project"><span>project</span></a></li>
         </ul>
 
         <div class="cate-bar"><span id="cateBar"></span></div>
 
         <ul class="artical-list">
-        {% for post in site.categories.project %}
+        {% for post in site.categories.idea %}
             <li>
                 <h2>
                     <a href="{{ post.url }}">{{ post.title }}</a>
