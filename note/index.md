@@ -1,19 +1,19 @@
 ---
-layout: webgl
+layout: home
 ---
 
 <div class="index-content project">
     <div class="section">
         <ul class="artical-cate">
             <li><a href="/"><span>Blog</span></a></li>
-            <li class="on"><a href="/idea"><span>Idea</span></a></li>
+            <li class="on"><a href="/note"><span>Note</span></a></li>
 			<li><a href="/project"><span>project</span></a></li>
         </ul>
 
         <div class="cate-bar"><span id="cateBar"></span></div>
 
         <ul class="artical-list">
-        {% for post in site.categories.idea %}
+        {% for post in site.categories.note %}
             <li>
                 <h2>
                     <a href="{{ post.url }}">{{ post.title }}</a>
