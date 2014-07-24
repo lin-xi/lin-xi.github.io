@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 谈谈刚需和360影视
-category: opinion
-description: 一个看起来很简单的需求，做起来真的有那么困难吗，到底是怎么回事？
+title: 我需要计划并执行
+category: note
+description: Common on! man!
 ---
 
-[BeiYuu]:    http://beiyuu.com  "BeiYuu"
+[Linxi]:    http://lin-xi.github.com  "Linxi"
