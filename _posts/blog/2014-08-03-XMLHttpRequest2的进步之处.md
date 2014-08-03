@@ -1,7 +1,11 @@
 ---
 layout: post
-title: FFT
-description: XMLHttpRequest2的进步之处
+title: XMLHttpRequest2的进步之处
+description: XHR2主要的新功能有(我平时开发遇到的):
+上传下载二进制数据
+上传进度事件的支持
+跨域请求
+同时结合html5中的File API，我们就可以在网页中实现更丰富的功能。
 category: blog
 ---
 
