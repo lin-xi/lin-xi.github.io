@@ -5,6 +5,7 @@ description: XHR2主要的新功能有，上传下载二进制数据，上传进
 category: blog
 ---
 
+
 ##XMLHttpRequest2的进步之处
 
 本文参考自:XMLHttpRequest2 新技巧 （重点保留demo，方便自己日后查阅）
