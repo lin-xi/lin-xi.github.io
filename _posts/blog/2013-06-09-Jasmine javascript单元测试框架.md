@@ -1,8 +1,7 @@
 ---
 layout: post
 title: golang与node.js的http模块性能对比测试（go1）
-description: 
-golang与node.js的http模块性能对比测试（go1）
+description: golang与node.js的http模块性能对比测试（go1）
 category: blog
 ---
 

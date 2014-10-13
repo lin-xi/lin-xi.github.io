@@ -1,8 +1,7 @@
 ---
 layout: post
 title: float & hasLayout
-description: 
-float & hasLayout
+description: float & hasLayout
 category: blog
 ---
 

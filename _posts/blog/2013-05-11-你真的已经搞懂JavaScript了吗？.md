@@ -1,8 +1,7 @@
 ---
 layout: post
 title: 你真的已经搞懂JavaScript了吗？
-description: 
-你真的已经搞懂JavaScript了吗？
+description: 你真的已经搞懂JavaScript了吗？
 category: blog
 ---
 

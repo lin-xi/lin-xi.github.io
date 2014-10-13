@@ -1,8 +1,7 @@
 ---
 layout: post
 title: BFC(Block Formatting Context)
-description: 
-BFC(Block Formatting Context)
+description: BFC(Block Formatting Context)
 category: blog
 ---
 
