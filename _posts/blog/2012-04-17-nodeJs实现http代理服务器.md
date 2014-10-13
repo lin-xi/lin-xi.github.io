@@ -1,5 +1,6 @@
 ---
 layout: post
+category: blog
 title: nodeJs实现http代理服务器
 description: 
 nodejs
