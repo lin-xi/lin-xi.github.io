@@ -7,8 +7,8 @@ layout: home
     <div class="section">
         <ul class="artical-cate">
             <li class="on"><a href="/"><span>Blog</span></a></li>
-            <li><a href="/note"><span>Note</span></a></li>
             <li><a href="/project"><span>Project</span></a></li>
+			<li><a href="/about"><span>About</span></a></li>
         </ul>
 
         <div class="cate-bar"><span id="cateBar"></span></div>
@@ -28,8 +28,9 @@ layout: home
 			行动改变一切。<br>
 			<br>
 			2014年我想做的：<br>
-			1).分布式日志系统<br>
-			2).三维重建<br>
+			1).有蓝牙或wifi的简单智能硬件<br>
+			2).js动画编辑器<br>
+			3).完善mvvm框架<br>
 		</div>
 	
     </div>

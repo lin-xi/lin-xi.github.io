@@ -6,6 +6,6 @@ paginate: 8
 permalink: /:title
 
 title: 秘境
-url: http://lin-xi.com
+url: http://lin-xi.github.io/
 feed: /atom.xml
-author_info: <a href="http://lin-xi.com/">Linxi</a>
+author_info: <a href="http://lin-xi.github.io/about">Linxi</a>
