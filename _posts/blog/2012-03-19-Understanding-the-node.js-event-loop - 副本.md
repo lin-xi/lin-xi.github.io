@@ -1,9 +1,9 @@
 ---
 layout: post
-category: blog
 title: Understanding the node.js event loop
 description: 
 the node.js event loop
+category: blog
 ---
 
 

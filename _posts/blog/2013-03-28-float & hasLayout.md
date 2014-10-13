@@ -1,9 +1,9 @@
 ---
 layout: post
-category: blog
 title: float & hasLayout
 description: 
 float & hasLayout
+category: blog
 ---
 
 浮动元素不占任何正常文档流空间，而浮动元素的定位还是基于正常的文档流，然后从文档流中抽出并尽可能远的移动至左侧或者右侧。文字内容会围绕在浮动元素周围。当一个元素从正常文档流中抽出后，仍然在文档流中的其他元素将忽略该元素并填补他原先的空间。   

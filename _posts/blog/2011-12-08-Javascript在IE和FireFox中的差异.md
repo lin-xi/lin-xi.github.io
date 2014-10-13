@@ -1,9 +1,9 @@
 ---
 layout: post
-category: blog
 title: Javascript在IE和FireFox中的差异
 description: 
 javascript浏览器兼容性
+category: blog
 ---
 
 ## Javascript在IE和FireFox中的差异

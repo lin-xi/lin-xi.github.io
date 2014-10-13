@@ -1,9 +1,9 @@
 ---
 layout: post
-category: blog
 title: BFC(Block Formatting Context)
 description: 
 BFC(Block Formatting Context)
+category: blog
 ---
 
 上文中我们讲述了在一个星球上发生的有关overflow:hidden的故事。这次，我们再欣赏下她另一个迷人之处。其实，关键也不是她啦。而是由于她会引起[BFC(Block Formatting Context)][0]。BFC又是什么？什么情况会创建BFC？它有什么用？其实在写代码时经常会遇到。

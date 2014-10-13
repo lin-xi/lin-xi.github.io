@@ -1,9 +1,9 @@
 ---
 layout: post
-category: blog
 title: 你真的已经搞懂JavaScript了吗？
 description: 
 你真的已经搞懂JavaScript了吗？
+category: blog
 ---
 
 昨天在著名前端架构师Baranovskiy的博客中看到一个帖子《[So, you think you know JavaScript?][0]》

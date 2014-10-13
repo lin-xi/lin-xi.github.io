@@ -1,9 +1,9 @@
 ---
 layout: post
-category: blog
 title: NOSQL数据库大比拼Cassandra vs MongoDB vs CouchDB vs Redis vs Riak vs HBase
 description: 
 Cassandra  MongoDB  CouchDB  Redis  Riak  HBase
+category: blog
 ---
 
 

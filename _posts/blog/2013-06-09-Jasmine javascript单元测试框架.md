@@ -1,9 +1,9 @@
 ---
 layout: post
-category: blog
 title: golang与node.js的http模块性能对比测试（go1）
 description: 
 golang与node.js的http模块性能对比测试（go1）
+category: blog
 ---
 
 在jasmine的官网的第一行文字是"BDD for JavaScript"。什么是BDD呢？
