@@ -90,7 +90,7 @@
         var reg_var1 = /(@[\w-]+):([\w-]+);/g;
         var match_vars1 = reg_var1.exec(copy);
         while(match_vars1){
-			var val = data[match_vars[1].slice(1)];
+			var val = data[match_vars1[1].slice(1)];
             variables[match_vars1[1]] = val ? val : match_vars1[2];
             //将直接变量替换到表达式中
             match_vars1 = reg_var1.exec(copy);
