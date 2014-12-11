@@ -1,21 +1,65 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    <meta name="author" content="LinXi" />
-    <meta name="renderer" content="webkit">
-    <meta name="description" content="LinXi's Blog" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="/css/default.css" type="text/css" />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="{{ site.feed }}" />
-    <script src="/js/project/dcss/dcss.js" type="text/javascript"></script>
-</head>
-<body>
+---
+layout: default
+---
 
-    {{ content }}
-    
-    
-</body>
-</html>
+<link rel="stylesheet" href="/js/prettify/prettify.css" />
+
+<style type="text/css">
+    body { background:#e8e8e8; }
+    @media screen and (max-width: 750px){
+        body { background:#fff; }
+    }
+    @media screen and (max-width: 1020px){
+        body { background:#fff; }
+    }
+</style>
+
+<div id="content">
+    <div class="entry">
+        <h1 class="entry-title"><a href="{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></h1>
+        <p class="entry-date">{{ page.date|date:"%Y-%m-%d" }}</p>
+        {{ content }}
+
+        <div id="disqus_container">
+            <div style="margin-bottom:20px" class="right">
+                <script type="text/javascript" charset="utf-8">
+                
+                </script>
+            </div>
+            <a href="#" class="comment" onclick="return false;">点击查看评论</a>
+            <div id="disqus_thread"></div>
+        </div>
+    </div>
+	
+	<!--
+    <div class="sidenav">
+		Linxi
+    </div>
+	-->
+
+    <div class="sidenav">
+        <h2>Blog</h2>
+        <ul class="artical-list">
+        {% for post in site.categories.blog%}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+        </ul>
+
+        <h2>Webgl</h2>
+        <ul class="artical-list">
+        {% for post in site.categories.Webgl%}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+        </ul>
+
+        <h2>Project</h2>
+        <ul class="artical-list">
+        {% for post in site.categories.project%}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<script src="/js/post.js" type="text/javascript"></script>
+<script src="/js/project/dcss/dcss.js" type="text/javascript"></script>
