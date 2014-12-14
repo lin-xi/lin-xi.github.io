@@ -29,72 +29,16 @@
 	
 	{{ content }}
 	
-	<style type="text/css">
-		.dcss-header{
-			width:100%; height:500px; line-height:500px; text-align:center; position:relative;
-			background: #f0f0f0; /* Old browsers */
-			background: -moz-linear-gradient(top,  #f0f0f0 0%, #e9ebea 100%); /* FF3.6+ */
-			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0f0f0), color-stop(100%,#e9ebea)); /* Chrome,Safari4+ */
-			background: -webkit-linear-gradient(top,  #f0f0f0 0%,#e9ebea 100%); /* Chrome10+,Safari5.1+ */
-			background: -o-linear-gradient(top,  #f0f0f0 0%,#e9ebea 100%); /* Opera 11.10+ */
-			background: -ms-linear-gradient(top,  #f0f0f0 0%,#e9ebea 100%); /* IE10+ */
-			background: linear-gradient(to bottom,  #f0f0f0 0%,#e9ebea 100%); /* W3C */
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e9ebea',GradientType=0 ); /* IE6-9 */
-		}
-		.dcss-header .logo{
-			position:absolute; left:50%; top:50%; width: 186px; height: 186px; line-height: 186px;
-			margin-left: -93px; margin-top: -93px;
-			box-shadow: inset 0 0 10px #C0C1C2; border-radius: 100%; 
-		}
-		.dcss-header .img-border{
-			position:absolute; left:50%; top:50%; width: 160px; height: 160px; line-height: 160px;
-			margin-left: -80px; margin-top: -80px;
-			border-radius: 100%;
-			background: #f0f0f0;
-			box-shadow: 0 0 6px #D0D1D2;
-		}
-		.dcss-header .menu{
-			position:absolute; left:50%; bottom:0; width: 310px; height: 60px; line-height: 60px;
-			margin-left: -155px;
-		}
-		.dcss-header .menu li{display: inline-block; width:100px; text-align: center; padding:0; margin:0;
-			background: #f5f5f5; list-style: none; font-size: 24px; color: #666;
-		}
-		.dcss-header .menu li:hover{background: #BBB; cursor:pointer;}
-		
-		.dcss-header .logo img{vertical-align: middle;}
-		.dcss-content{width:100%; background: #fff; min-height:400px;height:auto !important;height:400px;}
-		.dcss-comment{padding: 20px;}
-	</style>
-
-	<div class="dcss-header">
-		<span class="logo">
-			<span class="img-border">
-				<img src="/images/dcss.png"/>
-			</span>
-		</span>
-		
-		<ul class="menu">
-			<li><a href="#">dcss</a></li>
-			<li><a href="#demo">demo</a></li>
-			<li><a href="#api">api</a></li>
-		</ul>
-	</div>
-	
-	<div class="dcss-content">
-	</div>
-	
-	<div class="dcss-comment">
-		<div id="disqus_container">
-			<div style="margin-bottom:20px" class="right">
-				<script type="text/javascript" charset="utf-8">
-				
-				</script>
-			</div>
-			<a href="#" class="comment" onclick="return false;">点击查看评论</a>
-			<div id="disqus_thread"></div>
+	<div id="disqus_container">
+		<div style="margin-bottom:20px" class="right">
+			<script type="text/javascript" charset="utf-8">
+			
+			</script>
 		</div>
+		<a href="#" class="comment" onclick="return false;">点击查看评论</a>
+		<div id="disqus_thread"></div>
 	</div>
+
 	
 	
 </div>
