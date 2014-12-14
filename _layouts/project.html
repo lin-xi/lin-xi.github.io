@@ -62,27 +62,3 @@ layout: default
 </div>
 
 <script src="/js/post.js" type="text/javascript"></script>
-<script src="/js/project/dcss/dcss.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-	var dcss = Dcss.load({
-		width: '500px',
-		height: '300px',
-		depth: '400px'
-	}, '/js/project/dcss/box.dcss');
-	
-	$('#set-width').click(function(){
-		//更新
-		dcss.update({
-			width: '400px'
-		});
-	});
-	
-	$('#front-face').click(function(){$('#cube').addClass('show-front');});
-	$('#back-face').click(function(){$('#cube').addClass('show-back');});
-	$('#left-face').click(function(){$('#cube').addClass('show-left');});
-	$('#right-face').click(function(){$('#cube').addClass('show-right');});
-	$('#top-face').click(function(){$('#cube').addClass('show-top');});
-	$('#bottom-face').click(function(){$('#cube').addClass('show-bottom');});
-	
-</script>
