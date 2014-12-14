@@ -1,5 +1,8 @@
 (function(){
     var cache = {};
+    var variables = {};
+    var _styleElement;
+
     var ajax = {
         send: function(url, method, params, cb) {
             var xhr = new XMLHttpRequest();
@@ -43,18 +46,20 @@
         }
     };
 
-    var variables = {};
-
     function Interface(path, data){
         this.path = path;
         this.data = data;
     }
     Interface.prototype.update = function(data){
+        var headElement = document.getElementsByTagName('head')[0];
+        headElement.removeChild(_styleElement);
+        variables = {};
+        
         if(cache[this.path]){
             for(var k in data){
                 this.data[k] = data[k];
             }
-            renderCss(this.data, cache[this.path]);
+            renderCss(this.data, cache[this.path].css);
         }
     }
 	
@@ -102,7 +107,8 @@
         // @half-width:360px/2 => @half-width=180px
         // @left-width:360px+120px => @left-width=480px
         // @all-width=360px+@half-width => @all-width=360px+180px
-        var reg_var2 = /(@[\w-]+):([\w-]+[\+\*\/-][\w-]+).*?;/g;
+        // @face-left=(@width-@depth)/2 => @face-left=(360px-180px)/2
+        var reg_var2 = /(@[\w-]+):([^;]+);/g;
         var match_vars2 = reg_var2.exec(copy);
         if(!match_vars2){
             return;
@@ -118,7 +124,7 @@
             copy = copy.replace(match_vars2[2], result);
             match_vars2 = reg_var2.exec(copy);
         }
-        compile(copy);
+        compile(copy, data);
     }
 
     function parseCss(css){
@@ -161,6 +167,7 @@
         } else {
             styleElement.appendChild(doc.createTextNode(cssCode))
         }
+        _styleElement = styleElement;
     }
 
     window.Dcss = {
