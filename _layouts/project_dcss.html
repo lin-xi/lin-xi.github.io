@@ -56,6 +56,8 @@
 	
 	.dcss-header .logo img{vertical-align: middle;}
 	.dcss-content{background: #fff; min-height:400px;height:auto !important;height:400px; padding: 40px;}
+	.dcss-comment{padding: 40px;}
+	.dcss-footer{background: #000; padding:10px; text-align: center; color: #999;}
 </style>
 
 </head>
@@ -81,18 +83,15 @@
 		{{ content }}
 	</div>
 		
-	
-	<div id="disqus_container">
-		<div style="margin-bottom:20px; margin-top:20px;" class="right">
-			<script type="text/javascript" charset="utf-8">
-			
-			</script>
+	<div class="dcss-comment">
+		<div id="disqus_container">
+			<div id="disqus_thread"></div>
 		</div>
-		<a href="#" class="comment" onclick="return false;">点击查看评论</a>
-		<div id="disqus_thread"></div>
 	</div>
 
-
+	<div class="dcss-footer">
+		&copy; &nbsp;&nbsp; linxi &nbsp;&nbsp; lin-xi.github.io
+	</div>
 
 </div>
 
