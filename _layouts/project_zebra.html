@@ -20,10 +20,17 @@
 		font: normal 16px/22px "Microsoft YaHei";
 		color: #323232;
 		margin: 0 auto;
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
 	}
 	.container {
 	    margin-right: auto;
-	    margin-left: auto
+	    margin-left: auto;
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
 	}
 	*{
 		-webkit-box-sizing: border-box;
@@ -71,44 +78,454 @@
 	.offset-1{margin-left: 8.33333333%;}
 	.offset-0{margin-left: 0;}
 
+	h2{display: block; padding: 10px 10px 20px 10px; border-bottom: 1px #e0f3f4 solid;}
+	.tc{text-align: center;}
+	.pl-30{padding-left: 30px;}
+	.code{background: #f5f5f5; border-radius: 4px; color: #222; width: 90%; font-size: 16px; padding: 10px; min-height: 100px;}
 
-	.header{height: 700px; background: url(/images/zebra/bg.png) #D6C36C;}
-	.menu{height: 200px; line-height: 200px; background-color: rgba(255,255,255, 0.5); text-align: center;}
+	.icon-number{display: inline-block; background: #4CAF50; border-radius: 100%; width: 30px; height: 30px; line-height: 30px; text-align: center; font-style: normal; color: #fff; font-weight: bold; font-size: 20px; vertical-align: middle; margin-left: 10px; margin-right: 10px;}
+
+	.page{position: relative; width: 100%; display: block; padding-top: 50px;}
+	.func{background: url(/images/zebra/bg.png) #D6C36C;}
+	.func .text{font-size: 20px; line-height: 2;}
+
+	.menu-section{position: fixed; top:100%; left: 10%; width: 80%; height: 100px; line-height: 100px; margin-top: -100px;
+		-webkit-transition: 1s all cubic-bezier(1, 0, 0.58, 1);
+		background-color: rgba(255,255,255, 0.5);
+		z-index: 10;
+	}
+	.menu-section-top{position: fixed; top:0; left: 0; width: 100%; padding-left: 10%; padding-right: 10%; height: 50px; line-height: 50px; background: #fff; border-bottom: #ccc 1px solid; margin-top: 0;}
+	.menu{height: 100%; text-align: center;}
+	.menu .menu-item{cursor: pointer;}
+	.menu .menu-item:hover{background: #f5f5f5;}
+	.menu-section .indicator{position: absolute; 
+		-webkit-transition: 1s all cubic-bezier(1, 0, 0.58, 1);
+	}
+	.menu-section-top .indicator{position: absolute; height: 5px; background: #f00; width: 100px; top: 0;}
+
+
+	.install{background-color: rgba(255, 255, 255, 1);}
+	.install .text{font-size: 18px;}
+	.line{border-left: 1px #e0f3f4 solid;}
+
+
+	.usage{background-color: rgba(63, 63, 63, 1);}
+	.command-line{ background-color: rgba(63, 63, 63, 1); width: 80%; height: 35px; line-height: 35px; text-indent: 10px; color: #fff; font-size: 16px; outline: none;  border: none; 
+	}
+	.comment{color: #888; padding: 5px 15px;}
+	.sign{color: #ccc; padding-left: 10px;}
+	.zebra-log{
+		width: 90%; margin-left: 10px; background-color: rgba(63, 63, 63, 1);
+		height: 500px; border: none; color: #ccc;
+	}
+	.usage .text{color: #ccc;}
+
+	.config{background-color: #FFCC2F;}
+	.config pre{ width: 80%; margin-left: 15px; background-color: rgba(255, 255, 255, 1); height: 550px; overflow-y: auto; color: #444; font-weight: bold; box-shadow: 0 0 10px #fff;}
+
+	.user{background-color: rgb(73, 174, 217);}
+	.user .logo-wall{
+		border: 1px #e0f3f4 solid; height: 100px; line-height: 100px; text-align: center; background: rgba(255,255,255, 1);
+	}
+	.user .logo-wall a{text-decoration: none; color: #888;}
+	.user .logo-wall img{vertical-align: middle;}
+
 </style>
 
 </head>
 <body>
 
 <div class="container">
-	<div class="row header">
+	<div class="page func">
+
+		<img src="zebra.png"/>
+
 		<div class="row">
-		</div>
-		<div class="row">
-			<div class="col-2"></div>
-			<div class="col-8 menu">
-				<span class="col-3"><i class="icon-biotech"></i>功能简介</span>
-				<span class="col-3">安装使用</span>
-				<span class="col-3">文档</span>
-				<span class="col-3">反馈</span>
+			<div class="col-8 offset-2 text">
+				<p><i class="icon-document"></i>解决js模板问题</p>
+				<p><i class="icon-feed_in"></i>内置uglify，js压缩混淆</p>
+				<p><i class="icon-stack_of_photos"></i>js打包合并</p>
+				<p><i class="icon-refresh"></i>自动监听js修改，重新构建</p>
+				<p><i class="icon-radar_plot"></i>模块化, 相对路径转换</p>
 			</div>
-			<div class="col-2"></div>
+		</div>
+
+
+		<div class="menu-section">
+			<div class="row menu">
+				<span class="col-2 menu-item" command="func"><i class="icon-biotech"></i>Zebra</span>
+				<span class="col-2 menu-item" command="install">安装</span>
+				<span class="col-2 menu-item" command="usage"><i class="icon-biotech"></i>开始使用</span>
+				<span class="col-2 menu-item" command="config"><i class="icon-biotech"></i>配置</span>
+				<span class="col-2 menu-item" command="user"><i class="icon-biotech"></i>用户</span>
+				<span class="col-2 menu-item" command="feedback">反馈</span>
+			</div>
+			<div class="indicator">
+			</div>
 		</div>
 	</div>
 
-	<div class="dcss-content">
-		{{ content }}
+	<div class="page install">
+		<div class="row">
+			<div class="col-8 offset-2">
+				<h2>安装zebra</h2>
+				<br><br>
+				<div class="row text">
+					<div class="col-4 tc">
+						<i class="icon-start"></i>免安装
+					</div>
+					<div class="col-8 line pl-30">
+						<i class="icon-number">1</i>安装 nodejs，<a href="https://nodejs.org/" target="_blank">https://nodejs.org/</a>
+						<br><br>
+						<i class="icon-number">2</i><a href="https://raw.githubusercontent.com/lin-xi/zebra/master/zebra.js" target="_blank">下载zebra.js</a>
+						<br><br>
+						<i class="icon-number">3</i>将zebra.js拷贝到项目根目录
+					</div>
+				</div>
+				<br><br><br>
+				<div class="row text">
+					<div class="col-4 tc">
+						<i class="icon-support"></i>npm安装
+					</div>
+					<div class="col-8 line pl-30">
+						<i class="icon-number">1</i>安装 nodejs，<a href="https://nodejs.org/" target="_blank">https://nodejs.org/</a>
+						<br><br>
+						<i class="icon-number">2</i>npm install -g zebra</h3>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+	
+	<div class="page usage">
+		<p class="comment">#输入node zebra.js -w，回车</p>
 		
-	<div class="dcss-comment">
-		<div id="disqus_container">
-			<div id="disqus_thread"></div>
+		<div class="row" style="position: relative">
+			<span class="sign">></span><input class="command-line" type="text" value="node zebra.js -w"/>
+		</div>
+
+		<div class="row">
+			<div class="col-6">
+				<textarea class="zebra-log" readonly="true"></textarea>
+			</div>
+			<div class="col-6 text">
+				<h1>命令行参数说明：</h1>
+
+				-w &nbsp;&nbsp;监控模块，当有文件发生改变的时候，自动重新构建
+
+				<br><br><br><br>
+				<h1>使用__inline()</h1>
+
+				在js代码中
+				<textarea class="code">
+	var tpl = __inline('./chatLogo.tpl');
+				</textarea>
+				<br><br>
+				zebra编译之后，会把模板中的内容嵌入到js中：
+				<textarea class="code">
+	var tpl="<div class=\"xmeet-chat-logo\">\n  <img width=\"48\" height=\"48\" src=\"http://meet.xpro.im/v2/api/img/chat.png\"/>\n</div>\n";
+				</textarea>
+				
+			</div>
 		</div>
 	</div>
 
-	<div class="dcss-footer">
-		&copy;<a href="http://lin-xi.github.io">linxi</a>
+	<div class="page config">
+		<div class="row">
+			<div class="col-1 text"></div>
+			<div class="col-5 text">
+				<h1>配置文件</h1>
+				<i class="icon-settings"></i>
+				zebra-config.json放到与zebra.js同级目录
+
+			</div>
+			<div class="col-6">
+				<p class="comment">zebra-config.json</p>
+				<pre>
+				<code>
+	{
+	    "base": "./src",  //代码根目录
+	    "output": "./static",   //输出目录
+	    "rules": {
+	        "js": {
+	            "compile": true,  //编译js
+	            "uglify": false,  //uglify压缩
+	            "copy": true,     //文件拷贝
+	            "pack": {         //文件合并打包
+	                "xmeet.base.js": [
+	                    "_.js",
+	                    "TweenMax.min.js"
+	                ],
+	                "xmeet.api.js": [
+	                    "api.js",
+	                    "md5.js",
+	                    "SocketChat.js",
+	                    "ChatWindow.js"
+	                ]
+	            }
+	        }
+	        "css": {
+	            "copy": true
+	        },
+	        "image": {
+	            "copy": true
+	        },
+	        "html": {
+	            "copy": true
+	        },
+	        "font": {
+	            "copy": true
+	        }
+	    }
+	}
+				</code>
+				</pre>
+			</div>
+		</div>
 	</div>
+
+	<div class="page user">
+		<br><br><br>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<div class="col-5 logo-wall">
+					<a href="http://biaozhu.baidu.com" target="_blank"><img src="http://biaozhu.baidu.com/static/lbc/img/logo-white_59e7213.png"/></a>
+				</div>
+				<div class="col-2"></div>
+				<div class="col-5 logo-wall">
+					<a href="http://biaozhu.baidu.com/crm" target="_blank"><img src="http://www.baidu.com/img/bdlogo.png" width="120"/>本地商户中心审核平台</a>
+				</div>
+			</div>
+			<div class="col-2">
+			</div>
+		</div>
+	</div>
+
+	<div class="page feedback tc">
+		<br><br><br>
+		<i class="icon-customer_support"></i>
+		<a href="https://github.com/lin-xi/zebra/issues/new" target="_blank">意见&bug反馈</a>
+	</div>
+
 
 </div>
 
 <script src="/js/post.js" type="text/javascript"></script>
+<script type="text/javascript">
+	function $(selector){
+		var doms = document.querySelectorAll(selector);
+		if(doms.length == 1){
+			return doms[0];
+		}else {
+			return Array.prototype.slice.call(doms);
+		}
+	}
+
+	$('.page').forEach(function(item){
+		item.style.height = window.screen.availHeight + 'px';
+	});
+
+	var isAnimate = false, currentTab = 'func';
+	$('.menu .menu-item').forEach(function(item){
+		item.addEventListener('click', function(e){
+			var cmd = item.getAttribute('command');
+			var page = $('.'+cmd);
+			if(!isAnimate){
+				isAnimate = true;
+				animate($('.container'), {top: -page.offsetTop}, 1000, function(ele, step, now){
+					ele.style.top = now.top + 'px';
+					if(step == 1){
+						isAnimate = false;
+						currentTab = cmd;
+					}
+				});
+				if(cmd == 'func'){
+					$('.menu-section').className = 'menu-section';
+
+				} else {
+					$('.menu-section').className = 'menu-section menu-section-top';
+				}
+				if(currentTab == 'func'){
+					setTimeout(function(){
+						$('.indicator').style.left = (item.offsetLeft + item.offsetWidth/2 - 50) + 'px'
+					}, 1100)
+				}else{
+					$('.indicator').style.left = (item.offsetLeft + item.offsetWidth/2 - 50) + 'px'
+				}
+			}
+		});
+	});
+
+	
+	$('.command-line').addEventListener('keydown', function(e){
+		if(e.which == 13){
+			var log = $('.zebra-log');
+			var logs= [
+				'                    ,,',
+				'                   *MM',
+				'                    MM',
+				'  M"""MMV  .gP"Ya   MM,dMMb.   `7Mb,od8  ,6"Yb.',
+				'     AMV  ,M\'    Yb MM    `Mb  MM\' \"\'8)      MM',
+				'    AMV   8M""""""  MM     M8  MM       ,pm9mMM',
+				'   AMV   ,YM.    ,  MM.   ,M9  MM      8M    MM',
+				'  AMMmmmM  `Mbmmd\'  P^YbmdP\' .JMML.     `Moo9^Yo.',
+				'=================================================== Version 1.0.8',
+				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/api.js]',
+				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/ChatWindow.js]',
+				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/md5.js]',
+				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/SocketChat.js]',
+				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/FilterChain.js]',
+				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/TweenMax.min.js]',
+				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/_.js]',
+				'> Pack [D:/work/workspace/javascript/github/xpro/api/xmeet.api.js]',
+				'[done] 4.092s',
+				'[watch]...'
+			];
+			var i=0;
+			function typeWord(){
+				if(i< logs.length){
+					log.value += logs[i] + '\n';
+					setTimeout(typeWord, 300);
+				}
+				i++;
+			}
+			typeWord();
+		}
+	});
+
+	function animate(dom, to, duration, render){
+		var sd = new Date().getTime(), ed = sd + duration;
+		var fps = 1000/30, d = sd;
+
+		var from = {};
+		for(var k in to){
+			from[k] = getProperty(dom, k);
+		}
+		function run(){
+			var nd = new Date().getTime();
+			if(nd < ed){
+				var diff = nd - d;
+				if(diff > fps){
+					var step = (nd-sd)/duration;
+					var now = {};
+					for(var k in from){
+						now[k] = from[k] + (to[k] - from[k])*step;
+					}
+					render(dom, Bezier.cubicBezier(1, 0, 0.58, 1, step, duration), now);
+					d = nd;
+				}
+				requestAnimationFrame(run);
+			} else {
+				render(dom, 1, to);
+			}
+		}
+		run();
+
+		function getProperty(ele, prop){
+			switch(prop){
+				case 'scrollTop':
+				case 'scrollLeft':
+					return ele[prop];
+				break;
+				default:
+					var v = window.getComputedStyle(ele, null).getPropertyValue(prop);
+					v = (v+'').replace('px', '');
+					return +v;
+				break;
+			}
+		}
+	}
+
+
+var Bezier = (function(){
+	'use strict';
+	var DEFAULT_DURATION = 400;//ms
+	var solveEpsilon = function(duration) {
+		return 1.0 / (200.0 * duration);
+	};
+	var unitBezier = function(p1x, p1y, p2x, p2y) {
+		var cx = 3.0 * p1x;
+		var bx = 3.0 * (p2x - p1x) - cx;
+		var ax = 1.0 - cx -bx;
+		var cy = 3.0 * p1y;
+		var by = 3.0 * (p2y - p1y) - cy;
+		var ay = 1.0 - cy - by;
+		var sampleCurveX = function(t) {
+			// `ax t^3 + bx t^2 + cx t' expanded using Horner's rule.
+			return ((ax * t + bx) * t + cx) * t;
+		};
+		var sampleCurveY = function(t) {
+			return ((ay * t + by) * t + cy) * t;
+		};
+		var sampleCurveDerivativeX = function(t) {
+			return (3.0 * ax * t + 2.0 * bx) * t + cx;
+		};
+		var solveCurveX = function(x, epsilon) {
+			var t0;
+			var t1;
+			var t2;
+			var x2;
+			var d2;
+			var i;
+			for (t2 = x, i = 0; i < 8; i++) {
+				x2 = sampleCurveX(t2) - x;
+				if (Math.abs (x2) < epsilon) {
+					return t2;
+				}
+				d2 = sampleCurveDerivativeX(t2);
+				if (Math.abs(d2) < 1e-6) {
+					break;
+				}
+				t2 = t2 - x2 / d2;
+			}
+
+			// Fall back to the bisection method for reliability.
+			t0 = 0.0;
+			t1 = 1.0;
+			t2 = x;
+
+			if (t2 < t0) {
+				return t0;
+			}
+			if (t2 > t1) {
+				return t1;
+			}
+
+			while (t0 < t1) {
+				x2 = sampleCurveX(t2);
+				if (Math.abs(x2 - x) < epsilon) {
+					return t2;
+				}
+				if (x > x2) {
+					t0 = t2;
+				} else {
+					t1 = t2;
+				}
+				t2 = (t1 - t0) * 0.5 + t0;
+			}
+
+			// Failure.
+			return t2;
+		};
+
+		var solve = function(x, epsilon) {
+			return sampleCurveY(solveCurveX(x, epsilon));
+		};
+		return function(x, duration) {
+			return solve(x, solveEpsilon(+duration || DEFAULT_DURATION));
+		};
+	};
+	return {
+		linear: unitBezier(0.0, 0.0, 1.0, 1.0),
+		ease: unitBezier(0.25, 0.1, 0.25, 1.0),
+		easeIn: unitBezier(0.42, 0, 1.0, 1.0),
+		easeOut: unitBezier(0, 0, 0.58, 1.0),
+		easeInOut: unitBezier(0.42, 0, 0.58, 1.0),
+		cubicBezier: function(p1x, p1y, p2x, p2y, x, duration) {
+			return unitBezier(p1x, p1y, p2x, p2y)(x, duration);
+		}
+	};
+})();
+
+</script>
