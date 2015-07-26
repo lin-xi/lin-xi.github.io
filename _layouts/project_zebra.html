@@ -92,6 +92,7 @@
 	}
 
 	.page{position: relative; width: 100%; display: block; padding-top: 50px;}
+	.logo{position: absolute; left: 10px; top: 10px;}
 	.func{background: url(/images/zebra/bg.png) #D6C36C;}
 	.func .text{font-size: 20px; line-height: 3;}
 
@@ -144,11 +145,11 @@
 <div class="container">
 	<div class="page func">
 
-		<img src="zebra.png"/>
+		<a class="logo" href="http://lin-xi.github.io/zebra/"><img src="/images/zebra/zebra.png"/></a>
 
 		<div class="row">
 			<div class="col-8 offset-2 text">
-				<h2>前端一体化解决方案</h2>
+				<h3>前端一体化解决方案</h3>
 				<p><i class="icon-document"></i>解决js模板问题</p>
 				<p><i class="icon-feed_in"></i>内置uglify，js压缩混淆</p>
 				<p><i class="icon-stack_of_photos"></i>js打包合并</p>
@@ -340,7 +341,7 @@
 			var page = $('.'+cmd);
 			if(!isAnimate){
 				isAnimate = true;
-				animate($('.container'), {top: -page.offsetTop}, 1000, function(ele, step, now){
+				animate($('.container'), {top: -page.offsetTop}, 600, function(ele, step, now){
 					ele.style.top = now.top + 'px';
 					if(step == 1){
 						isAnimate = false;
