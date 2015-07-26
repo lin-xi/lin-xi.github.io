@@ -23,15 +23,6 @@ layout: home
         </ul>
     </div>
     <div class="aside">
-		
-		<div class="annual-plan">
-			行动改变一切。<br>
-			<br>
-			2014年我想做的：<br>
-			1).有蓝牙或wifi的简单智能硬件<br>
-			2).js动画编辑器<br>
-			3).完善mvvm框架<br>
-		</div>
 	
     </div>
 </div>
