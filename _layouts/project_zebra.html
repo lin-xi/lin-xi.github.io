@@ -296,37 +296,37 @@
 	    "output": "./static",   //输出目录
 	    "rules": {
 	        "js": {
-				"compile": true,  //如果使用模块化，设为true
-				"uglify": true,  //uglify压缩
-				"md5": {"exclude": [] },  //加MD5，需要排除的文件
-				"pack": {         //文件合并打包
-					"xmeet.base.js": [
-						"_.js",
-						"TweenMax.min.js"
-					],
-					"xmeet.api.js": [
-						"api.js",
-						"md5.js",
-						"SocketChat.js",
-						"ChatWindow.js"
-					]
-				}
+			"compile": true,  //如果使用模块化，设为true
+			"uglify": true,  //uglify压缩
+			"md5": {"exclude": [] },  //加MD5，需要排除的文件
+			"pack": {         //文件合并打包
+				"xmeet.base.js": [
+					"_.js",
+					"TweenMax.min.js"
+				],
+				"xmeet.api.js": [
+					"api.js",
+					"md5.js",
+					"SocketChat.js",
+					"ChatWindow.js"
+				]
+			}
 	        }
 	        "css": {
-				"compress": true,
-				"md5": {"exclude": [] },  //加MD5，需要排除的文件
-				"pack": {         //文件合并打包
-					"xmeet.css": [
-						"page.css",
-						"style.css"
-					]
-				}
+			"compress": true,
+			"md5": {"exclude": [] },  //加MD5，需要排除的文件
+			"pack": {         //文件合并打包
+				"xmeet.css": [
+					"page.css",
+					"style.css"
+				]
+			}
 			},
 	        "image": {
-				"md5": {"exclude": [] },  //加MD5，需要排除的文件
+			"md5": {"exclude": [] },  //加MD5，需要排除的文件
 	        },
 	        "other": {       
-				"copy": true       //拷贝文件
+			"copy": true       //拷贝文件
 			}
 	    }
 	}
