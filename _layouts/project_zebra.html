@@ -298,9 +298,7 @@
 	        "js": {
 				"compile": true,  //如果使用模块化，设为true
 				"uglify": true,  //uglify压缩
-				"md5": {           //文件名加MD5
-					"exclude": []  //排除的文件
-				}
+				"md5": {"exclude": [] },  //加MD5，需要排除的文件
 				"pack": {         //文件合并打包
 					"xmeet.base.js": [
 						"_.js",
@@ -316,9 +314,7 @@
 	        }
 	        "css": {
 				"compress": true,
-				"md5": {   		    //文件名加MD5
-					"exclude": []   //排除的文件
-				},
+				"md5": {"exclude": [] },  //加MD5，需要排除的文件
 				"pack": {         //文件合并打包
 					"xmeet.css": [
 						"page.css",
@@ -327,9 +323,7 @@
 				}
 			},
 	        "image": {
-				"md5": {   		    //文件名加MD5
-					"exclude": []   //排除的文件
-				}
+				"md5": {"exclude": [] },  //加MD5，需要排除的文件
 	        },
 	        "other": {       
 				"copy": true       //拷贝文件
