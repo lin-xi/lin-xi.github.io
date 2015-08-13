@@ -186,9 +186,9 @@
 				<p><i class="icon-document"></i>模板注入</p>
 				<p><i class="icon-md5"></i>文件名加md5</p>
 				<p><i class="icon-stack_of_photos"></i>内置uglify，js压缩混淆，css压缩</p>
-				<p><i class="icon-photos"></i>图片自动sprite化</p>
 				<p><i class="icon-feed_in"></i>模块打包合并</p>
 				<p><i class="icon-refresh"></i>自动监听js修改，重新构建</p>
+				<p><i class="icon-photos"></i>一键发布到服务器</p>
 				<p><i class="icon-radar_plot"></i>模块化辅助</p>
 			</div>
 		</div>
@@ -259,8 +259,9 @@
 				<h1>命令行参数说明：</h1>
 
 				-w &nbsp;&nbsp;监控模块，当有文件发生改变的时候，自动重新构建
+				-d &nbsp;&nbsp;将本地文件发布到服务器
 
-				<br><br><br><br>
+				<br><br>
 				<h1>使用__inline()</h1>
 
 				在js代码中<br>
@@ -295,9 +296,11 @@
 	    "output": "./static",   //输出目录
 	    "rules": {
 	        "js": {
-	            "compile": true,  //编译js
-	            "uglify": false,  //uglify压缩
-	            "copy": true,     //文件拷贝
+	            "compile": true,  //如果使用模块化，设为true
+	            "uglify": true,  //uglify压缩
+				"md5": {           //文件名加MD5
+					"exclude": []  //排除的文件
+				}
 	            "pack": {         //文件合并打包
 	                "xmeet.base.js": [
 	                    "_.js",
@@ -312,17 +315,25 @@
 	            }
 	        }
 	        "css": {
-	            "copy": true
-	        },
+				"compress": true,
+				"md5": {   		    //文件名加MD5
+					"exclude": []   //排除的文件
+				},
+				"pack": {         //文件合并打包
+	                "xmeet.css": [
+	                    "page.css",
+	                    "style.css"
+	                ]
+	            }
+			},
 	        "image": {
-	            "copy": true
+	            "md5": {   		    //文件名加MD5
+					"exclude": []   //排除的文件
+				}
 	        },
-	        "html": {
-	            "copy": true
-	        },
-	        "font": {
-	            "copy": true
-	        }
+	        "other": {       
+				"copy": true       //拷贝文件
+			}
 	    }
 	}
 				</code>
@@ -341,7 +352,7 @@
 				</div>
 				<div class="col-2"></div>
 				<div class="col-5 logo-wall">
-					<a href="http://biaozhu.baidu.com/crm" target="_blank"><img src="http://www.baidu.com/img/bdlogo.png" width="120"/>本地商户中心审核平台</a>
+
 				</div>
 			</div>
 			<div class="col-2">
