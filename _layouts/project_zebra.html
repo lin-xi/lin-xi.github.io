@@ -258,7 +258,7 @@
 			<div class="col-6 text">
 				<h1>命令行参数说明：</h1>
 
-				-w &nbsp;&nbsp;监控模块，当有文件发生改变的时候，自动重新构建
+				-w &nbsp;&nbsp;监控模块，当有文件发生改变的时候，自动重新构建<br>
 				-d &nbsp;&nbsp;将本地文件发布到服务器
 
 				<br><br>
@@ -296,23 +296,23 @@
 	    "output": "./static",   //输出目录
 	    "rules": {
 	        "js": {
-	            "compile": true,  //如果使用模块化，设为true
-	            "uglify": true,  //uglify压缩
+				"compile": true,  //如果使用模块化，设为true
+				"uglify": true,  //uglify压缩
 				"md5": {           //文件名加MD5
 					"exclude": []  //排除的文件
 				}
-	            "pack": {         //文件合并打包
-	                "xmeet.base.js": [
-	                    "_.js",
-	                    "TweenMax.min.js"
-	                ],
-	                "xmeet.api.js": [
-	                    "api.js",
-	                    "md5.js",
-	                    "SocketChat.js",
-	                    "ChatWindow.js"
-	                ]
-	            }
+				"pack": {         //文件合并打包
+					"xmeet.base.js": [
+						"_.js",
+						"TweenMax.min.js"
+					],
+					"xmeet.api.js": [
+						"api.js",
+						"md5.js",
+						"SocketChat.js",
+						"ChatWindow.js"
+					]
+				}
 	        }
 	        "css": {
 				"compress": true,
@@ -320,14 +320,14 @@
 					"exclude": []   //排除的文件
 				},
 				"pack": {         //文件合并打包
-	                "xmeet.css": [
-	                    "page.css",
-	                    "style.css"
-	                ]
-	            }
+					"xmeet.css": [
+						"page.css",
+						"style.css"
+					]
+				}
 			},
 	        "image": {
-	            "md5": {   		    //文件名加MD5
+				"md5": {   		    //文件名加MD5
 					"exclude": []   //排除的文件
 				}
 	        },
