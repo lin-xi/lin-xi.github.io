@@ -1,3 +1,11 @@
+---
+layout: post
+title: Javascript正则表达式
+description: Javascript正则表达式
+category: blog
+---
+
+
 ###元字符
 
 ( [ { \ ^ $ | ) ? * + .
