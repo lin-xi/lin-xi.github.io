@@ -15,25 +15,15 @@ category: blog
 ###预定义的特殊字符
 
 字符	正则	描述
-
 \t	/\t/	制表符
-
 \n	/\n/	制表符
-
 \r	/\r/	回车符
-
 \f	/\f/	换页符
-
 \a	/\a/	alert字符
-
 \e	/\e/	escape字符
-
 \cX	/\cX/	与X相对应的控制字符
-
 \b	/\b/	与回退字符
-
 \v	/\v/	垂直制表符
-
 \0	/\0/	空字符
 
  
@@ -41,17 +31,11 @@ category: blog
 ###字符	等同于	描述
 
 .	[^\n\r]	除了换行和回车之外的任意字符
-
 \d	[0-9]	数字字符
-
 \D	[^0-9]	非数字字符
-
 \s	[ \t\n\x0B\f\r]	空白字符
-
 \S	[^ \t\n\x0B\f\r]	非空白字符
-
 \w	[a-zA-Z_0-9]	单词字符(所有的字母)
-
 \W	[^a-zA-Z_0-9]	非单词字符
 
 
@@ -59,15 +43,10 @@ category: blog
 代码	类型	描述
 
 ?	软性量词	出现零次或一次
-
 *	软性量词	出现零次或多次(任意次)
-
 +	软性量词	出现一次或多次（至道一次）
-
 {n}	硬性量词	对应零次或者n次
-
 {n,m}	软性量词	至少出现n次但不超过m次
-
 {n,}	软性量词	至少出现n次(+的升级版)
 
 
@@ -125,6 +104,7 @@ category: blog
 ###反向引用
 
 反向引用标识由正则表达式中的匹配组捕获的子字符串。每个反向引用都由一个编号或名称来标识，并通过“\编号”表示法进行引用。
+
 
 ```
 	var color = "#990000";
@@ -200,6 +180,7 @@ category: blog
 	alert(reBed.test(str2))//true
 ```
 题目，移除hr以外的所有标签，只留下innerText!
+
 ```
 	var html = "<p><a href='http://www.cnblogs.com/rubylouvre/'>Ruby Louvre</a></p><hr/><p>by <em>司徒正美</em></p>";
 	var text = html.replace(/<(?!hr)(?:.|\s)*?>/ig,"")
@@ -223,6 +204,7 @@ $	结尾
 \B	非单词边界	 
 
 题目，设计一个字符串原型方法，实现首字母大写！
+
 ```
 	var a = "ruby";
 	String.prototype.capitalize =  function () {
