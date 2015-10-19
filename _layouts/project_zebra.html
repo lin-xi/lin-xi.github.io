@@ -149,7 +149,7 @@
 	.usage .text{color: #ccc;}
 
 	.config{background-color: #FFCC2F;}
-	.config pre{ width: 80%; margin-left: 15px; background-color: rgba(255, 255, 255, 1); height: 450px; overflow-y: auto; color: #444; font-weight: bold; box-shadow: 0 0 10px #fff;}
+	.config pre{ width: 80%; margin-left: 15px; background-color: rgba(255, 255, 255, 1); overflow-y: auto; color: #444; font-weight: bold; box-shadow: 0 0 10px #fff;}
 
 	.user{background-color: rgb(73, 174, 217);}
 	.user .logo-wall{
@@ -231,9 +231,12 @@
 						<i class="icon-support"></i>npm安装
 					</div>
 					<div class="col-8 line pl-30">
+						名字被占用，暂时未发布到npm
+						<!--
 						<i class="icon-number">1</i>安装 nodejs，<a href="https://nodejs.org/" target="_blank">https://nodejs.org/</a>
 						<br><br>
 						<i class="icon-number">2</i>npm install -g zebra</h3>
+						-->
 					</div>
 				</div>
 			</div>
@@ -292,43 +295,37 @@
 				<pre>
 				<code>
 	{
-	    "base": "./src",  //代码根目录
-	    "output": "./static",   //输出目录
-	    "rules": {
-	        "js": {
-			"compile": true,  //如果使用模块化，设为true
-			"uglify": true,  //uglify压缩
-			"md5": {"exclude": [] },  //加MD5，需要排除的文件
-			"pack": {         //文件合并打包
-				"xmeet.base.js": [
-					"_.js",
-					"TweenMax.min.js"
-				],
-				"xmeet.api.js": [
-					"api.js",
-					"md5.js",
-					"SocketChat.js",
-					"ChatWindow.js"
-				]
-			}
-	        }
-	        "css": {
-			"compress": true,
-			"md5": {"exclude": [] },  //加MD5，需要排除的文件
-			"pack": {         //文件合并打包
-				"xmeet.css": [
-					"page.css",
-					"style.css"
-				]
-			}
+		"base": "./src",        //代码目录
+		"output": "./static",   //输出目录
+		"rules": {
+			"js": {
+				"compile": false,   //模块化欲编译
+				"uglify": false,    //uglify压缩
+				"md5": {            //有md5属性，js文件名会加上md5
+					"exclude": []   //md5排除的文件
+				}
 			},
-	        "image": {
-			"md5": {"exclude": [] },  //加MD5，需要排除的文件
-	        },
-	        "other": {       
-			"copy": true       //拷贝文件
+			"css": {
+				"compress": true,   //压缩
+				"md5": {            //有md5属性，js文件名会加上md5
+					"exclude": []   //md5排除的文件
+				}
+			},
+			"html": {
+				"resourceMap": true //将resourceMap注入到html页面中，在resourceMap中可以找到文件对应的打包或者是加md5之后文件
+			},
+			"image": {},
+			"other": {
+				"copy": true       //拷贝其他的文件
 			}
-	    }
+		},
+		"deploy": [{    //发布代码到服务器
+			"receiver": "http://cq02-map-sv-control04.cq02.baidu.com:8890/receiver.php",   //服务器接受文件
+			"from": "./static",     //源目录
+			"to": "/home/map/odp_crm/webroot/mobile-framework",  //目的目录
+			"exclude": "svn|rar|psd|docx"  //排除文件 *.svn, *.rar
+		}],
+		"clean": true            //清空输出目录
 	}
 				</code>
 				</pre>
@@ -376,7 +373,7 @@
 	}
 
 	$('.page').forEach(function(item){
-		item.style.height = window.screen.availHeight + 'px';
+		//item.style.height = window.screen.availHeight + 'px';
 	});
 
 	var isAnimate = false, currentTab = 'func';
