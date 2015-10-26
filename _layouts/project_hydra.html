@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="author" content="Linxi" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="Linxi's Blog" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/hydra.css" type="text/css" />
+	
+</head>
+<body>
+
+	<div class="index">
+		<div class="menu-switch">
+		</div>
+
+		<ul class="menu">
+			<li>hydra</li>
+			<li>5分钟入门</li>
+			<li>文档</li>
+			<li>API</li>
+			<li>组件</li>
+			<li>帮助</li>
+			<li>Release Note</li>
+		</ul>
+
+		<div class="logo">
+			<img src="/images/hydra/hydra.png"/>
+			<div class="logo-text">
+				Hydra
+			</div>
+		</div>
+
+		<div class="download">
+			hydra.js&nbsp;&nbsp;50k,&nbsp;&nbsp;下载
+		</div>
+	</div>
+
+
+
+<script type="text/javascript">
+	function $(selector){
+		var doms = document.querySelectorAll(selector);
+		if(doms.length == 1){
+			return doms[0];
+		}else {
+			return Array.prototype.slice.call(doms);
+		}
+	}
+
+	$('.page').forEach(function(item){
+		//item.style.height = window.screen.availHeight + 'px';
+	});
+
+	var isAnimate = false, currentTab = 'func';
+	$('.menu .menu-item').forEach(function(item){
+		item.addEventListener('click', function(e){
+			var cmd = item.getAttribute('command');
+			var page = $('.'+cmd);
+			if(!isAnimate){
+				isAnimate = true;
+				animate($('.container'), {top: -page.offsetTop}, 600, function(ele, step, now){
+					ele.style.top = now.top + 'px';
+					if(step == 1){
+						isAnimate = false;
+						currentTab = cmd;
+					}
+				});
+				if(cmd == 'func'){
+					$('.menu-section').className = 'menu-section';
+					$('.logo').className = 'logo';
+				} else {
+					$('.menu-section').className = 'menu-section menu-section-top';
+					$('.logo').className = 'logo logo-top';
+				}
+				if(currentTab == 'func'){
+					setTimeout(function(){
+						$('.indicator').style.left = (item.offsetLeft + item.offsetWidth/2 - 50) + 'px'
+					}, 1100)
+				}else{
+					$('.indicator').style.left = (item.offsetLeft + item.offsetWidth/2 - 50) + 'px'
+				}
+			}
+		});
+	});
+
+	
+	$('.command-line').addEventListener('keydown', function(e){
+		if(e.which == 13){
+			var log = $('.zebra-log');
+			var logs= [
+				'                    ,,',
+				'                   *MM',
+				'                    MM',
+				'  M"""MMV  .gP"Ya   MM,dMMb.   `7Mb,od8  ,6"Yb.',
+				'     AMV  ,M\'    Yb MM    `Mb  MM\' \"\'8)      MM',
+				'    AMV   8M""""""  MM     M8  MM       ,pm9mMM',
+				'   AMV   ,YM.    ,  MM.   ,M9  MM      8M    MM',
+				'  AMMmmmM  `Mbmmd\'  P^YbmdP\' .JMML.     `Moo9^Yo.',
+				'=================================================== Version 1.0.8',
+				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/api.js]',
+				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/ChatWindow.js]',
+				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/md5.js]',
+				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/SocketChat.js]',
+				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/FilterChain.js]',
+				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/TweenMax.min.js]',
+				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/_.js]',
+				'> Pack [D:/work/workspace/javascript/github/xpro/api/xmeet.api.js]',
+				'[done] 4.092s',
+				'[watch]...'
+			];
+			var i=0;
+			function typeWord(){
+				if(i< logs.length){
+					log.value += logs[i] + '\n';
+					setTimeout(typeWord, 300);
+				}
+				i++;
+			}
+			typeWord();
+		}
+	});
+
+	function animate(dom, to, duration, render){
+		var sd = new Date().getTime(), ed = sd + duration;
+		var fps = 1000/30, d = sd;
+
+		var from = {};
+		for(var k in to){
+			from[k] = getProperty(dom, k);
+		}
+		function run(){
+			var nd = new Date().getTime();
+			if(nd < ed){
+				var diff = nd - d;
+				if(diff > fps){
+					var step = (nd-sd)/duration;
+					var now = {};
+					for(var k in from){
+						now[k] = from[k] + (to[k] - from[k])*step;
+					}
+					render(dom, Bezier.cubicBezier(1, 0, 0.58, 1, step, duration), now);
+					d = nd;
+				}
+				requestAnimationFrame(run);
+			} else {
+				render(dom, 1, to);
+			}
+		}
+		run();
+
+		function getProperty(ele, prop){
+			switch(prop){
+				case 'scrollTop':
+				case 'scrollLeft':
+					return ele[prop];
+				break;
+				default:
+					var v = window.getComputedStyle(ele, null).getPropertyValue(prop);
+					v = (v+'').replace('px', '');
+					return +v;
+				break;
+			}
+		}
+	}
+
+
+var Bezier = (function(){
+	'use strict';
+	var DEFAULT_DURATION = 400;//ms
+	var solveEpsilon = function(duration) {
+		return 1.0 / (200.0 * duration);
+	};
+	var unitBezier = function(p1x, p1y, p2x, p2y) {
+		var cx = 3.0 * p1x;
+		var bx = 3.0 * (p2x - p1x) - cx;
+		var ax = 1.0 - cx -bx;
+		var cy = 3.0 * p1y;
+		var by = 3.0 * (p2y - p1y) - cy;
+		var ay = 1.0 - cy - by;
+		var sampleCurveX = function(t) {
+			// `ax t^3 + bx t^2 + cx t' expanded using Horner's rule.
+			return ((ax * t + bx) * t + cx) * t;
+		};
+		var sampleCurveY = function(t) {
+			return ((ay * t + by) * t + cy) * t;
+		};
+		var sampleCurveDerivativeX = function(t) {
+			return (3.0 * ax * t + 2.0 * bx) * t + cx;
+		};
+		var solveCurveX = function(x, epsilon) {
+			var t0;
+			var t1;
+			var t2;
+			var x2;
+			var d2;
+			var i;
+			for (t2 = x, i = 0; i < 8; i++) {
+				x2 = sampleCurveX(t2) - x;
+				if (Math.abs (x2) < epsilon) {
+					return t2;
+				}
+				d2 = sampleCurveDerivativeX(t2);
+				if (Math.abs(d2) < 1e-6) {
+					break;
+				}
+				t2 = t2 - x2 / d2;
+			}
+
+			// Fall back to the bisection method for reliability.
+			t0 = 0.0;
+			t1 = 1.0;
+			t2 = x;
+
+			if (t2 < t0) {
+				return t0;
+			}
+			if (t2 > t1) {
+				return t1;
+			}
+
+			while (t0 < t1) {
+				x2 = sampleCurveX(t2);
+				if (Math.abs(x2 - x) < epsilon) {
+					return t2;
+				}
+				if (x > x2) {
+					t0 = t2;
+				} else {
+					t1 = t2;
+				}
+				t2 = (t1 - t0) * 0.5 + t0;
+			}
+
+			// Failure.
+			return t2;
+		};
+
+		var solve = function(x, epsilon) {
+			return sampleCurveY(solveCurveX(x, epsilon));
+		};
+		return function(x, duration) {
+			return solve(x, solveEpsilon(+duration || DEFAULT_DURATION));
+		};
+	};
+	return {
+		linear: unitBezier(0.0, 0.0, 1.0, 1.0),
+		ease: unitBezier(0.25, 0.1, 0.25, 1.0),
+		easeIn: unitBezier(0.42, 0, 1.0, 1.0),
+		easeOut: unitBezier(0, 0, 0.58, 1.0),
+		easeInOut: unitBezier(0.42, 0, 0.58, 1.0),
+		cubicBezier: function(p1x, p1y, p2x, p2y, x, duration) {
+			return unitBezier(p1x, p1y, p2x, p2y)(x, duration);
+		}
+	};
+})();
+
+</script>
