@@ -739,6 +739,10 @@ JsMovie.prototype.play = function (sn, fn) {
 		finish();
 	}
 
+	if (df) {
+		df.dom.scrollTop(0);
+	}
+
 	function finish() {
 		running = false;
 		finishTask();
