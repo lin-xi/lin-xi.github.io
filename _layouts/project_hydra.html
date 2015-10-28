@@ -8,6 +8,7 @@
     <meta name="description" content="Linxi's Blog" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/js/prettify/prettify.css" />
     <link rel="stylesheet" href="/css/hydra.css" type="text/css" />
     <link rel="stylesheet" href="/css/jsMovie.css" type="text/css" />
 	
@@ -135,7 +136,7 @@
 
 <h2>模板 views/index.tpl</h2>
 
-<pre>
+<textarea class="code-pre" readonly="true">
 	<template name="index">
 		<ul class="brand-list-head">
 			<li class="col-2">姓名</li>
@@ -158,7 +159,7 @@
 			{{/each}}
 		</ul>
 	</template>
-</pre>
+</textarea>
 
 <h2>控制器 IndexController.js</h2>
 
@@ -964,6 +965,11 @@ component.newInstance(document.body, {transclude：'hello，world'});
 		});
 	}
 
+	$('pre').addClass('prettyprint linenums'); //添加Google code Hight需要的class
+	
+	$.getScript('/js/prettify/prettify.js',function(){
+        prettyPrint();
+    });
 	
 </script>
 
