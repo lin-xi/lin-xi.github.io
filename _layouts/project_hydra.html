@@ -9,253 +9,963 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/css/hydra.css" type="text/css" />
+    <link rel="stylesheet" href="/css/jsMovie.css" type="text/css" />
 	
 </head>
 <body>
 
-	<div class="index">
-		<div class="menu-switch">
-		</div>
+	<div id="hydra-logo">
+		<img src="/images/hydra/hydra-logo.png"/>
+	</div>
+	<div class="menu-switch"></div>
 
-		<ul class="menu">
-			<li>hydra</li>
-			<li>5分钟入门</li>
-			<li>文档</li>
-			<li>API</li>
-			<li>组件</li>
-			<li>帮助</li>
-			<li>Release Note</li>
+	<div class="menu">
+		<p class="head"></p>
+		<ul>
+			<li page="introduce">hydra</li>
+			<li page="start">5分钟入门</li>
+			<li page="doc">文档</li>
+			<li page="api">API</li>
+			<li page="component">组件</li>
+			<li page="help">帮助</li>
+			<li page="releaseNote">Release Note</li>
+			<li page="thanks">致谢</li>
 		</ul>
+	</div>
 
-		<div class="logo">
-			<img src="/images/hydra/hydra.png"/>
-			<div class="logo-text">
-				Hydra
+	<div id="app">
+
+		<div class="scene" sceneid="index" name="主页">
+			<div class="frame index" name="index">
+
+				<div class="logo">
+					<img src="/images/hydra/hydra.png"/>
+					<div class="logo-text">
+						Hydra
+					</div>
+				</div>
+
+				<div class="download">
+					hydra.min.js&nbsp;&nbsp;50k,&nbsp;&nbsp;下载
+				</div>
+
 			</div>
 		</div>
 
-		<div class="download">
-			hydra.js&nbsp;&nbsp;50k,&nbsp;&nbsp;下载
+		
+		<div class="scene" sceneid="introduce" name="hydra">
+			<div class="frame introduce" name="introduce">
+				<div class="text">
+					hydra 是一个移动端轻量级的mvc框架，实现了路由，模板系统，组件系统，实现了从model到view的单向绑定，模板底层使用virtual dom差量更新。
+				</div>
+
+			</div>
 		</div>
+
+
+		<div class="scene" sceneid="start" name="5分钟入门" animtype="horizontal">
+			<div class="frame start-no1" name="no1" animtype="horizontal">
+				
+<h2>目录结构</h2>
+
+<pre>
++src
+    +css
+    +images
+	+--js
+	   +--component
+	   +--controllers
+	       ---AppController.js
+	       ---IndexController.js
+	   +--stores
+	       ---listStore.js
+	   +--views
+	       ---index.tpl
+	   ---app.js
+	   ---hydra.js
+---index.html
+</pre>
+
+<h2>html</h2>
+
+<textarea class="code-pre" readonly="true">
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="format-detection" content="telephone=no" />
+			<meta name="msapplication-tap-highlight" content="no" />
+			<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+
+			<meta name="keywords" content="hydra"/>
+			<meta name="description" content="hydra demo" />
+			<title>hydra demo</title>
+	</head>
+
+	<body>
+		
+		<div id="view">
+		</div>
+
+		<script src="js/hydra.js"></script>
+		<script src="js/app.js"></script>
+
+	</body>
+	</html>
+</textarea>
+
+<h2>app.js</h2>
+
+<pre>
+	var app = window.app = koala.module('koala-demo');
+
+	app.config({
+		base: 'js',
+		router: {
+			'/': {
+				controller: 'IndexController',
+				template: 'views/index'
+			}
+		},
+		view: '#view'
+	});
+</pre>
+
+
+
+<h2>模板 views/index.tpl</h2>
+
+<pre>
+	<template name="index">
+		<ul class="brand-list-head">
+			<li class="col-2">姓名</li>
+			<li class="col-2">财富</li>
+			<li class="col-2"></li>
+		</ul>
+		<ul class="brand-list">
+			{{#each brandList}}
+				<li class="row">
+					<div class="col-4">
+						<p>{{name}}</p>
+					</div>
+					<div class="col-4">
+						<p>{{fortune}}元</p>
+					</div>
+					<div class="col-4">
+						{{time|dateTime}}
+					</div>
+				</li>
+			{{/each}}
+		</ul>
+	</template>
+</pre>
+
+<h2>控制器 IndexController.js</h2>
+
+<pre>
+
+app.controller('IndexController', 'stores/listStore', function (listStore) {
+
+	var sort = 'asc';
+	Template.index.events({
+		'.del-button click': function (e) {
+			var did = this.parentNode.parentNode.id.split('_');
+			listStore.deleteItem(did[1]);
+		}
+	});
+
+	listStore.initialState();
+
+});
+</pre>
+
+<h2>store    listStore.js</h2>
+
+<pre>
+
+app.store('listStore', function (state) {
+	var root = this;
+
+	return {
+		initialState: function () {
+			var data = {
+				topLevel: '1',
+				list: [{
+					id: 1,
+					avatar: 'images/avatar1.jpg',
+					name: '比尔·盖茨',
+					fortune: 5200,
+					company: '微软',
+					age: 59,
+					country: '美国'
+				}, {
+					id: 2,
+					avatar: 'images/avatar2.jpg',
+					name: '卡洛斯·斯利姆·埃卢家族',
+					fortune: 5100,
+					company: '美洲电信',
+					age: 59,
+					country: '墨西哥'
+				}, {
+					id: 3,
+					avatar: 'images/avatar3.jpg',
+					name: '沃伦·巴菲特',
+					fortune: 4600,
+					company: '伯克希尔·哈撒韦',
+					age: 84,
+					country: '美国'
+				}]
+			};
+			state.setState(data);
+		},
+
+		deleteItem: function (did) {
+			var data = state.getState();
+			data.list = data.list.filter(function (item) {
+				if (item.id == did) {
+					return false;
+				} else {
+					return true;
+				}
+			});
+			state.setState(data);
+		}
+	};
+});
+
+</pre>
+
+自己搭建一个静态服务器，在本地访问效果如下
+
+完整代码请参见 github 项目
+
+<br><br><br><br><br>
+
+
+			</div>
+		</div>
+
+		<div class="scene" sceneid="doc" name="文档" animtype="horizontal">
+			<div class="frame doc-no1" name="no1" animtype="horizontal">
+				
+				<h1>模板系统</h1>
+				<h2> 1. 模板系统</h2>
+				<h3>1.1  模板语法</h3>
+
+				模板使用 mustang 系统，github地址为：http://github.com/lin-xi/mustang，mustang的风格和handlerbars 比较像。
+				<br><br>
+				
+				<b>普通的绑定</b>
+<pre>
+var tpl = '<p>{{country}}</p><p>{{address.city}}</p>';
+
+hydra.render(tpl,{country:"中国",address:{city:"北京"}}, function(text){
+	console.log(text); //'<p>中国</p><p>北京</p>
+});
+</pre>
+
+				<b>循环</b>
+<pre>
+var tpl = '{{#each list}}
+<p>{{country}}</p>
+{{/each}}';
+
+hydra.render(tpl,[{country:"中国"}, {country:"美国"}, {country:"阿富汗"}], function(text){
+	console.log(text); //<p>中国</p><p>美国</p><p>阿富汗</p>
+});
+</pre>
+
+				<b>If 判断</b>
+<pre>
+var tpl = '{{#if age > 60}}
+{{age}}-老得很
+{{#else}}
+{{age}}-老头
+{{/if}}';
+
+hydra.render(tpl,{age:"68"}, function(text){
+	console.log(text); //老头
+});
+</pre>
+
+				<b>引入另一模板</b>
+<pre>
+var tpl = '<p>{{#> js/views/antherTemplate}}</p>';
+
+//js/views/antherTemplate.tpl
+<template name="brandItem">
+	<p>{{time}}</p>
+</template>
+
+hydra.render(tpl,{time: new Date().getTime()}, function(text){
+	console.log(text); //1445942479195
+});
+</pre>
+				上面的语法可以组合使用
+
+				<h3>1.2 模板js文件</h3>
+				可以给模板指定一个同名的js文件，模板在渲染时会先执行js文件
+
+view/temp.tpl
+<pre>
+<template name="newTemplate">
+		<p>{{time|dateTime}}</p>
+</template>
+</pre>
+				其中，{{time|dateTime}} dateTime 为filter，可以对time的值进行处理
+
+view/temp.js
+<pre>
+//定义一个helper值
+Template.newTemplate.helpers({
+	time: function (argument) {
+		return new Date().getTime();
+	}
+});
+
+//定义一个fitler
+Template.newTemplate.filters({
+	dateTime: function (input) {
+		var out = "";
+		if (input && input != '0') {
+			var d = new Date(input);
+			var dt = [],
+				ti = [];
+			dt.push(d.getFullYear());
+			dt.push(d.getMonth() + 1);
+			dt.push(d.getDate());
+			ti.push(d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
+			ti.push(d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
+			ti.push(d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
+			out = dt.join('/') + ' ' + ti.join(':');
+		}
+		return out;
+	}
+});
+</pre>
+			模板渲染结果
+<pre>
+<div id="demo"></div>
+
+hydra.load('view/temp').render('#demo', {});
+//<div id="demo">2015/10/27 22:30:30</div>
+</pre>
+				模板的名称为newTemplate，在任何js中，可以通过Template.模板名 添加helpers和filters。
+
+				<h3>1.3 事件绑定</h3>
+				对模板中dom元素的事件绑定可以通过如下方式
+<pre>
+Template.index.events({
+	'.del-button click': function (e) {
+		var did = this.parentNode.parentNode.id.split('_');
+		listStore.deleteItem(did[1]);
+	}
+});
+</pre>
+
+			</div>
+			<div class="frame doc-no2" name="no2" animtype="horizontal">
+				
+<h2>2. store</h2>
+store主要负责数据的获取，并将修改和删除同步到数据源，并且通知模版系统将数据修改同步到dom上。
+
+<h3>2.1 创建</h3>
+
+<pre>
+app.store('listStore', function (state) {
+	var me = this;
+
+	return {
+		initialState: function () {
+			me.get('/getListData', {}, function (data) {
+			 	state.setState(data);
+			});
+		},
+
+		deleteItem: function (did) {
+			var data = state.getState();
+			data.list = data.list.filter(function (item) {
+				if (item.id == did) {
+					return false;
+				} else {
+					return true;
+				}
+			});
+			me.post('/removeListItem', {id: did}, function () {
+			 	state.setState(data);
+			});
+		}
+	};
+});
+
+</pre>
+创建一个store时，会注入state对象。
+state对象有两个方法
+state.getState(); 返回当前数据
+state.setState(); 设置当前数据
+
+setState时，会自动将新数据渲染到dom上
+
+<h3>2.2 store使用</h3>
+store可以注入到controller中
+
+<pre>
+app.controller('IndexController', 'stores/listStore', function (listStore) {
+	listStore.initialState();
+});
+
+</pre>
+<h3>2.3 store上下文</h3>
+store中的this被注入了StoreUtil对象，封装了ajax的get和post方法
+
+			</div>
+			<div class="frame doc-no3" name="no3" animtype="horizontal">
+				
+<h2> 3. 组件系统</h2>
+
+<h3>3.1 创建组件</h3>
+
+<pre>
+hydra.component('AlertDialog', {
+	props: {
+		title: '提示'
+	},
+	template: __inline('./alertDialog.tpl'),
+	render: function () {
+		var el = this.$el;
+		var dialog = el.querySelector('.dialog');
+
+		var w = dialog.offsetWidth,
+			h = dialog.offsetHeight;
+
+		var l = (window.innerWidth - w) / 2;
+		var t = (window.innerHeight - h) / 2;
+
+		dialog.style.left = l + 'px';
+		dialog.style.top = t + 'px';
+	},
+	events: function () {
+		var el = this.$el;
+
+		return {
+			'.close-button click': function (e) {
+				el.parentNode.removeChild(el);
+			}
+		};
+	}
+});
+</pre>
+在Component渲染到dom上之后，会调用render方法，然后进行事件绑定。
+render和events的上下文中，会注入Component的根节点$el。
+
+__inline('./alertDialog.tpl'); zebra在预编译的时候会将tpl的内容注入
+
+<h3>3.2 使用组件</h3>
+
+在template中使用tag
+<pre>
+<template name="index">
+
+	<AlertDialog name="alertDialog1" title="提示">
+		我是一个对话框，对话本领强
+	</AlertDialog>
+
+</template>
+</pre>
+
+直接加载
+<pre>
+
+hydra.loadComponent('alertDialog', function (alertDialog) {
+	alertDialog.newInstance({
+		transclude: '添加成功',
+	})
+});
+</pre>
+
+<h3>3.3 组件通信</h3>
+组件间可以通过内置的事件管道进行通信，同一个管道中的各个主体都能相互直接通信，能接受或者是发送事件。
+<pre>
+hydra.component('AlertDialog', {
+    props: {
+        title: '提示'
+    },
+    template: __inline('./alertDialog.tpl'),
+    render: function () {
+        ......
+    },
+    events: function () {
+        var el = this.$el;
+        var pipe = this.eventPipe('stateChange');
+        pipe.receive({
+	        'close': function(){
+		        el.parentNode.removeChild(el);
+	        }
+        });
+        
+        return {
+            '.close-button click': function (e) {
+                el.parentNode.removeChild(el);
+                pipe.write('close');
+            }
+        };
+    }
+});
+</pre>
+			</div>
+
+			<div class="frame doc-no4" name="no4" animtype="horizontal">
+				
+<h2>4 编译构建工具</h2>
+<h3>4.1 zebra.js</h3>
+推荐使用zebra.js，项目地址http://lin-xi.github.io/zebra
+zebra提供了对 __inline 的支持，以及生成resourceMap
+
+zebra的配置如下:
+<pre>
+{
+	"base": "./src",
+	"output": "./static",
+	"rules": {
+		"js": {
+			"compile": false,
+			"uglify": false,
+			"md5": {
+				"exclude": []
+			}
+		},
+		"css": {
+			"compress": true,
+			"md5": {
+				"exclude": []
+			}
+		},
+		"html": {
+			"resourceMap": true
+		},
+		"image": {},
+		"other": {
+			"copy": true
+		}
+	},
+	"deploy": [{
+		"receiver": "http://cq02-map-sv-control04.cq02.baidu.com:8890/receiver.php",
+		"from": "./static",
+		"to": "/home/map/odp_crm/webroot/mobile-framework",
+		"exclude": "svn|rar|psd|docx"
+	}],
+	"clean": true
+}
+</pre>
+
+执行 node zebra.js -w 之后，zebra会自动监听src目录文件的修改，然后重新编译发布到static目录下。
+
+			</div>
+			
+		</div>
+
+
+		<div class="scene" sceneid="api" name="API" animtype="horizontal">
+			<div class="frame api-no1" name="api-no1" animtype="horizontal">
+
+<h2>1. hydra</h2>
+
+<h3>1.1  hydra.moudule()</h3>
+创建一个模块，返回hydra模块对象 app
+
+<pre>
+var app = hydra.module('app');
+</pre>
+
+<h3>1.2  hydra.load()</h3>
+加载一个模板文件，返回模板对象 MTemplate
+<pre>
+var template = hydra.load('view/index');
+</pre>
+
+<h3>1.3  hydra.render()</h3>
+渲染模板
+<pre>
+var template = hydra.render('<p>{{country}}</p>', {country: '中国'}, function(html){
+	console.log(html);
+});
+</pre>
+
+<h3>1.4 hydra.component()</h3>
+创建一个组件
+<pre>
+hydra.component('AlertDialog', {
+	props: {
+		title: '提示'
+	},
+	template: __inline('./alertDialog.tpl'),
+	render: function () {
+	},
+	events: function () {
+		var el = this.$el;
+
+		return {};
+	}
+});
+</pre>
+
+<h3>1.5 hydra.loadComponent()</h3>
+加载一个组件，返回组件类
+<pre>
+hydra.loadComponent('alertDialog', function (alertDialog) {
+	alertDialog.newInstance({
+		transclude: '添加成功',
+	})
+});
+</pre>
+<h2>2  app模块</h2>
+
+<h3>2.1  app.config()</h3>
+配置app的根目录，路由，的视图容器
+<pre>
+app.config({
+	"base": 'js',
+	"router": {
+		'/': {
+			controller: 'IndexController',
+			template: 'views/index'
+		}
+	},
+	"view": '#view'
+});
+</pre>
+
+<h3>2.2  app.controller()</h3>
+创建一个controller
+
+<h3>2.3  app.store()</h3>
+创建一个store
+
+<h3>2.4  app.redirect()</h3>
+跳转到一个路由
+<pre>
+app.redirect('/product');
+</pre>
+
+<h3>2.5  app.setRouteParam()</h3>
+设置路由参数，跳转时，可以给另一个控制器传参
+<pre>
+app.setRouteParam({shopId: 30872628});
+</pre>
+
+<h3>2.6  app.getRouteParam()</h3>
+获取路由参数
+<pre>
+var shopId = app.getRouteParam('shopId');
+</pre>
+
+<h3>2.7  app.removeRouteParam()</h3>
+删除路由参数
+<pre>
+app.removeRouteParam('shopId');
+</pre>
+
+<h3>2.7  app.emptyRouteParam()</h3>
+清空路由参数
+<pre>
+app.removeRouteParam('shopId');
+</pre>
+
+<h3>2.8  app.getCurrentRoute()</h3>
+获取当前的路由路径
+<pre>
+var route = app.getCurrentRoute();
+</pre>
+
+<h3>2.9  app.getCurrentTemplate()</h3>
+获取当前的模板对象，返回模板对象
+<pre>
+var template = app.getCurrentTemplate();
+</pre>
+
+<h3>  controller scope</h3>
+在controller中this会被替换成scope对象
+
+<h3>3.1 scope.setState()</h3>
+设置当前数据，controller的视图重新渲染
+<pre>
+scope.setState(data);
+</pre>
+
+<h3>3.2 scope.apply()</h3>
+强制controller的视图重新渲染
+<pre>
+scope.apply();
+</pre>
+
+<h2>4 模板实例对象 XTemplate</h2>
+
+<h3>4.1 XTemplate</h3>
+<pre>
+<template name="index">
+	<topbar title="{{title}}"></topbar>
+</template>
+</pre>
+
+加载解析一个模板后，会生成一个模板的实例对象
+通过 Template.index 访问
+
+<h3>4.2 XTemplate.helpers()</h3>
+生成一个helper
+<pre>
+Template.index.helpers({
+	time: function (argument) {
+		return new Date().getTime();
+	}
+});
+</pre>
+
+<h3>4.2 XTemplate.filters()</h3>
+生成一个filter
+<pre>
+Template.brandItem.filters({
+	dateTime: function (input) {
+		var out = "";
+		if (input && input != '0') {
+			var d = new Date(input);
+			var dt = [],
+				ti = [];
+			dt.push(d.getFullYear());
+			dt.push(d.getMonth() + 1);
+			dt.push(d.getDate());
+			ti.push(d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
+			ti.push(d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
+			ti.push(d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
+			out = dt.join('/') + ' ' + ti.join(':');
+		}
+		return out;
+	}
+});
+</pre>
+日期格式化
+
+<h3>4.2 XTemplate.events()</h3>
+绑定dom事件
+<pre>
+Template.index.events({
+	'.sort1 click': function (e) {
+		sort = sort == 'asc' ? 'desc' : 'asc';
+		listStore.sortItem(sort);
+	},
+	'.del-button click': function (e) {
+		var did = this.parentNode.parentNode.id.split('_');
+		listStore.deleteItem(did[1]);
+	}
+});
+</pre>
+
+
+<h3>4.2 XTemplate.compile()</h3>
+编译模板
+<pre>
+Template.index.compile({
+	content: '<p>{{country}}</p>', //模板字符串
+	data: {{country: '中国'}},  //当前作用域数据
+	global: {{country: '中国'}}, //整个数据
+	_filters: filters //当前模板的filters
+});
+</pre>
+
+<h3>4.2 XTemplate.eval()</h3>
+执行表达式
+<pre>
+Template.index.eval("country == '中国'",{{country: '中国'}}, {{country: '中国'}});
+ //参数1：表达式
+ //参数2：当前作用域数据
+ //参数3：整个数据
+</pre>
+
+<h3>4.2 XTemplate.bindEvent()</h3>
+模板绑定事件
+<pre>
+Template.index.bindEvent();
+ //系统内部自动调用
+</pre>
+
+<h2>5 模板对象 MTemplate</h2>
+
+<h3>5.1 MTemplate</h3>
+<pre>
+var template = hydra.load('view/index');
+</pre>
+
+<h3>5.2 MTemplate.render()</h3>
+将指定的数据渲染到指定的dom中
+<pre>
+var template = hydra.load('view/index');
+template.render(nodeSelector, data); 
+//nodeSelector  dom
+//data 数据
+</pre>
+
+
+<h2>6 组件对象 XComponent</h2>
+
+<h3>6.1 XComponent</h3>
+<pre>
+var component = hydra.loadComponent('alertDialog');
+</pre>
+
+<h3>6.2 XComponent.new()</h3>
+创建组件实例
+<pre>
+var component = hydra.loadComponent('alertDialog');
+component.new('com_43d82f2a54', 'instance_name', {transclude：‘hello，world'}, 'index'); 
+ //参数1：component 唯一Id
+ //参数2：实例名称
+ //参数3：属性对象
+ //参数4：模板名称
+</pre>
+一般为系统内部调用
+
+<h3>6.3 XComponent.newInstance()</h3>
+创建组件实例
+<pre>
+var component = hydra.loadComponent('alertDialog');
+component.newInstance(document.body, {transclude：'hello，world'}); 
+//参数1：渲染的dom节点
+//参数2：属性对象
+</pre>
+
+			</div>
+			
+		</div>
+
+
+		<div class="scene" sceneid="component" name="组件">
+			<div class="frame start-no1" name="no1">
+				
+				<h2>组件</h2>
+
+
+			</div>
+		</div>
+
+
+		<div class="scene" sceneid="help" name="帮助">
+			<div class="frame start-no1" name="no1">
+				
+				<h2>帮助</h2>
+
+
+			</div>
+		</div>
+
+
+		<div class="scene" sceneid="releaseNote" name="ReleaseNote">
+			<div class="frame start-no1" name="no1">
+				
+				<h2>Release Note</h2>
+
+
+			</div>
+		</div>
+
+		<div class="scene" sceneid="thanks" name="致谢">
+			<div class="frame start-no1" name="no1">
+				
+				<h2>thanks</h2>
+
+
+			</div>
+		</div>
+
+
+
 	</div>
 
 
 
+<script src="/js/jquery-1.7.1.min.js"></script>
+<script src="/js/jsMovie/movie.js"></script>
 <script type="text/javascript">
-	function $(selector){
-		var doms = document.querySelectorAll(selector);
-		if(doms.length == 1){
-			return doms[0];
-		}else {
-			return Array.prototype.slice.call(doms);
-		}
-	}
 
-	$('.page').forEach(function(item){
-		//item.style.height = window.screen.availHeight + 'px';
+		
+	var movie = new JsMovie($('#app'));
+
+	movie.on('before_play', function(scene, frame){
+		if(scene.id !== 'index'){
+			$('.menu').css({left: 0});
+			$('#hydra-logo').show();
+			$('.menu-switch').hide();
+		} else {
+			$('.menu').css({left: -200});
+			$('#hydra-logo').hide();
+			$('.menu-switch').show();
+		}
+
+		selectMenu(scene.id);
 	});
 
-	var isAnimate = false, currentTab = 'func';
-	$('.menu .menu-item').forEach(function(item){
-		item.addEventListener('click', function(e){
-			var cmd = item.getAttribute('command');
-			var page = $('.'+cmd);
-			if(!isAnimate){
-				isAnimate = true;
-				animate($('.container'), {top: -page.offsetTop}, 600, function(ele, step, now){
-					ele.style.top = now.top + 'px';
-					if(step == 1){
-						isAnimate = false;
-						currentTab = cmd;
-					}
-				});
-				if(cmd == 'func'){
-					$('.menu-section').className = 'menu-section';
-					$('.logo').className = 'logo';
-				} else {
-					$('.menu-section').className = 'menu-section menu-section-top';
-					$('.logo').className = 'logo logo-top';
-				}
-				if(currentTab == 'func'){
-					setTimeout(function(){
-						$('.indicator').style.left = (item.offsetLeft + item.offsetWidth/2 - 50) + 'px'
-					}, 1100)
-				}else{
-					$('.indicator').style.left = (item.offsetLeft + item.offsetWidth/2 - 50) + 'px'
-				}
+	movie.play();
+	
+
+
+	$('.menu-switch').on('click', function(e){
+		var tar = $(e.target);
+
+		if(tar.hasClass('menu-open')){
+			tar.removeClass('menu-open');
+			$('.menu').css({left: -200});
+		} else {
+			tar.addClass('menu-open');
+			$('.menu').css({left: 0});
+		}
+	});
+
+	$('.menu').delegate('li', 'click', function(e){
+		var cur = $(e.currentTarget);
+		var page = cur.attr('page');
+		
+		switch(page){
+			case 'introduce':
+				movie.play(1, 0);
+			break;
+			case 'start':
+				movie.play(2, 0);
+			break;
+			case 'doc':
+				movie.play(3, 0);
+			break;
+			case 'api':
+				movie.play(4, 0);
+			break;
+			case 'component':
+				movie.play(5, 0);
+			break;
+			case 'help':
+				movie.play(6, 0);
+			break;
+			case 'releaseNote':
+				movie.play(7, 0);
+			break;
+			case 'thanks':
+				movie.play(8, 0);
+			break;
+		}
+
+		$('.menu li').removeClass('on');
+		cur.addClass('on');
+
+	});
+
+	function selectMenu(menu){
+		$('.menu li').each(function(i, item){
+			if(item.getAttribute('page') == menu){
+				$(item).addClass('on');
+			} else {
+				$(item).removeClass('on');
 			}
 		});
-	});
-
-	
-	$('.command-line').addEventListener('keydown', function(e){
-		if(e.which == 13){
-			var log = $('.zebra-log');
-			var logs= [
-				'                    ,,',
-				'                   *MM',
-				'                    MM',
-				'  M"""MMV  .gP"Ya   MM,dMMb.   `7Mb,od8  ,6"Yb.',
-				'     AMV  ,M\'    Yb MM    `Mb  MM\' \"\'8)      MM',
-				'    AMV   8M""""""  MM     M8  MM       ,pm9mMM',
-				'   AMV   ,YM.    ,  MM.   ,M9  MM      8M    MM',
-				'  AMMmmmM  `Mbmmd\'  P^YbmdP\' .JMML.     `Moo9^Yo.',
-				'=================================================== Version 1.0.8',
-				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/api.js]',
-				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/ChatWindow.js]',
-				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/md5.js]',
-				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/SocketChat.js]',
-				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/FilterChain.js]',
-				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/TweenMax.min.js]',
-				'> Uglify [D:/work/workspace/javascript/github/xpro/api/src/_.js]',
-				'> Pack [D:/work/workspace/javascript/github/xpro/api/xmeet.api.js]',
-				'[done] 4.092s',
-				'[watch]...'
-			];
-			var i=0;
-			function typeWord(){
-				if(i< logs.length){
-					log.value += logs[i] + '\n';
-					setTimeout(typeWord, 300);
-				}
-				i++;
-			}
-			typeWord();
-		}
-	});
-
-	function animate(dom, to, duration, render){
-		var sd = new Date().getTime(), ed = sd + duration;
-		var fps = 1000/30, d = sd;
-
-		var from = {};
-		for(var k in to){
-			from[k] = getProperty(dom, k);
-		}
-		function run(){
-			var nd = new Date().getTime();
-			if(nd < ed){
-				var diff = nd - d;
-				if(diff > fps){
-					var step = (nd-sd)/duration;
-					var now = {};
-					for(var k in from){
-						now[k] = from[k] + (to[k] - from[k])*step;
-					}
-					render(dom, Bezier.cubicBezier(1, 0, 0.58, 1, step, duration), now);
-					d = nd;
-				}
-				requestAnimationFrame(run);
-			} else {
-				render(dom, 1, to);
-			}
-		}
-		run();
-
-		function getProperty(ele, prop){
-			switch(prop){
-				case 'scrollTop':
-				case 'scrollLeft':
-					return ele[prop];
-				break;
-				default:
-					var v = window.getComputedStyle(ele, null).getPropertyValue(prop);
-					v = (v+'').replace('px', '');
-					return +v;
-				break;
-			}
-		}
 	}
 
-
-var Bezier = (function(){
-	'use strict';
-	var DEFAULT_DURATION = 400;//ms
-	var solveEpsilon = function(duration) {
-		return 1.0 / (200.0 * duration);
-	};
-	var unitBezier = function(p1x, p1y, p2x, p2y) {
-		var cx = 3.0 * p1x;
-		var bx = 3.0 * (p2x - p1x) - cx;
-		var ax = 1.0 - cx -bx;
-		var cy = 3.0 * p1y;
-		var by = 3.0 * (p2y - p1y) - cy;
-		var ay = 1.0 - cy - by;
-		var sampleCurveX = function(t) {
-			// `ax t^3 + bx t^2 + cx t' expanded using Horner's rule.
-			return ((ax * t + bx) * t + cx) * t;
-		};
-		var sampleCurveY = function(t) {
-			return ((ay * t + by) * t + cy) * t;
-		};
-		var sampleCurveDerivativeX = function(t) {
-			return (3.0 * ax * t + 2.0 * bx) * t + cx;
-		};
-		var solveCurveX = function(x, epsilon) {
-			var t0;
-			var t1;
-			var t2;
-			var x2;
-			var d2;
-			var i;
-			for (t2 = x, i = 0; i < 8; i++) {
-				x2 = sampleCurveX(t2) - x;
-				if (Math.abs (x2) < epsilon) {
-					return t2;
-				}
-				d2 = sampleCurveDerivativeX(t2);
-				if (Math.abs(d2) < 1e-6) {
-					break;
-				}
-				t2 = t2 - x2 / d2;
-			}
-
-			// Fall back to the bisection method for reliability.
-			t0 = 0.0;
-			t1 = 1.0;
-			t2 = x;
-
-			if (t2 < t0) {
-				return t0;
-			}
-			if (t2 > t1) {
-				return t1;
-			}
-
-			while (t0 < t1) {
-				x2 = sampleCurveX(t2);
-				if (Math.abs(x2 - x) < epsilon) {
-					return t2;
-				}
-				if (x > x2) {
-					t0 = t2;
-				} else {
-					t1 = t2;
-				}
-				t2 = (t1 - t0) * 0.5 + t0;
-			}
-
-			// Failure.
-			return t2;
-		};
-
-		var solve = function(x, epsilon) {
-			return sampleCurveY(solveCurveX(x, epsilon));
-		};
-		return function(x, duration) {
-			return solve(x, solveEpsilon(+duration || DEFAULT_DURATION));
-		};
-	};
-	return {
-		linear: unitBezier(0.0, 0.0, 1.0, 1.0),
-		ease: unitBezier(0.25, 0.1, 0.25, 1.0),
-		easeIn: unitBezier(0.42, 0, 1.0, 1.0),
-		easeOut: unitBezier(0, 0, 0.58, 1.0),
-		easeInOut: unitBezier(0.42, 0, 0.58, 1.0),
-		cubicBezier: function(p1x, p1y, p2x, p2y, x, duration) {
-			return unitBezier(p1x, p1y, p2x, p2y)(x, duration);
-		}
-	};
-})();
-
+	
 </script>
+
+</body>
+</html>

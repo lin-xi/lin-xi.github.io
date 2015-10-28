@@ -1,0 +1,51 @@
+.scene{position: absolute; left:0; top:0; width: 100%; height: 100%; display: none; }
+.scene .frame{position: absolute; left:0; top:0; width: 100%; height: 100%; display:none; }
+.scene .frame .animate{position: absolute;}
+
+#indicator{position: absolute; right: 30px; top:50%; width: 30px; padding-left: 10px; z-index: 30;}
+#indicator ul, li{position: relative;}
+#indicator li:hover{cursor: pointer;}
+.indicator-title{position: absolute; right: 45px; top:-10px; height: 30px; line-height: 30px; text-align: right; color: #fff; white-space: nowrap; z-index: 31; font-weight: bold; background-color: rgba(0,0,0, 0.8); padding: 0 20px;}
+.indicator-title:after{content: ''; position: absolute; right: -30px; top:0; height: 0; width: 0; border: 15px solid #e5c3b2;
+border-color: transparent  transparent transparent rgba(0,0,0, 0.8);
+}
+#indicator .frameIndicator{
+	width: 15px; height: 15px; border-radius: 100%;  margin-bottom: 20px; 
+	background-color: #000; border: 2px #fff solid;
+}
+#indicator .segmentIndicator{
+	position: relative;
+	width: 10px; height: 10px; border-radius: 100%;  margin-bottom: 20px; 
+	background-color: #000; margin-left: 4px; margin-top: 1px;
+}
+#indicator .segmentIndicator:after{
+	content: "";
+	position: absolute; left: -4px; top: -4px;
+	width: 15px; height: 15px; border-radius: 100%; 
+	border: 2px #0f0 solid;
+}
+#indicator .indicator-group .on{
+	background-color: #E58080;
+}
+
+#sub-indicator{position: absolute; bottom: 30px; left:50%; height: 30px; z-index: 30;}
+#sub-indicator ul{display: inline-block;}
+#sub-indicator li{position: relative; }
+#sub-indicator li:hover{cursor: pointer;}
+#sub-indicator .frameIndicator{
+	width: 15px; height: 15px; border-radius: 100%;  margin-right: 20px; 
+	background-color: #000; border: 2px #fff solid;
+}
+#sub-indicator .segmentIndicator{
+	width: 10px; height: 10px; border-radius: 100%;  margin-right: 20px; 
+	background-color: #000; border: 2px #fff solid;
+}
+#sub-indicator .segmentIndicator:before{
+	content: "";
+	position: absolute; left: -4px; top: -4px;
+	width: 10px; height: 10px; border-radius: 100%; 
+	border: 2px #0f0 solid;
+}
+#sub-indicator .indicator-group .on{
+	background-color: #E58080;
+}
