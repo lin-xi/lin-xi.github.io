@@ -70,21 +70,25 @@
 <h2>目录结构</h2>
 
 <pre>
-+src
-    +css
-    +images
-    +--js
-        +--component
-        +--controllers
-            ---AppController.js
-            ---IndexController.js
-        +--stores
-            ---listStore.js
-        +--views
-            ---index.tpl
-        ---app.js
-        ---hydra.js
-    ---index.html
++demo
+    +src
+        +css
+        +images
+        +--js
+            +--component
+            +--controllers
+                ---AppController.js
+                ---IndexController.js
+            +--stores
+                ---listStore.js
+            +--views
+                ---index.tpl
+            ---app.js
+            ---hydra.js
+        ---index.html
+	---zebra.js
+    ---zebra.config.js
+
 </pre>
 
 <h2>html</h2>
@@ -236,9 +240,13 @@ app.store('listStore', function (state) {
 
 </pre>
 
-自己搭建一个静态服务器，在本地访问效果如下
+自己搭建一个静态服务器，
+然后编译demo
+node zebra.js -w
 
 完整代码请参见 github 项目
+https://github.com/lin-xi/hydra/tree/master/examples/todo
+
 
 <br><br><br><br><br>
 
