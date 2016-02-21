@@ -1,5 +1,5 @@
 ---
-layout: project_hydra
+layout: project_react_xslider
 title: hydra
 category: project
 description: hydra 是一个移动端轻量级的mvc框架，实现了路由，模板系统，组件系统，实现了从model到view的单向绑定，模板底层使用virtual dom差量更新。
